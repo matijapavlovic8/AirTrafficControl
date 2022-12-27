@@ -7,40 +7,43 @@ public class ReadInput : MonoBehaviour
 {
 
     private GameObject plane;
+    private Rigidbody2D body;
     private int input;
     private float moveX;
     private float moveY;
-    private float move;
-    private float rotation;
     private Vector2 position;
+
+    private int n;
+    private GameObject airport;
 
     // Start is called before the first frame update
     void Start()
     {
         plane = GameObject.Find("Plane");
+        n = UnityEngine.Random.Range(1, 3);
+        airport = GameObject.Find("Airport " + n);
+        body = plane.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (input == 0)
+            plane.transform.position = Vector2.MoveTowards(plane.transform.position, airport.transform.position, .001f);
+        else
+        {
+            body.velocity = Vector2.zero;
+            plane.transform.position = Vector2.MoveTowards(plane.transform.position, position, .001f);
+            //plane.transform.Translate(position * Time.deltaTime, Space.World);
+        }
     }
 
     public void ReadStringInput(string s)
     {
         input = Int32.Parse(s);
-        moveX = (float) Math.Sin((Math.PI / 180) * input) * Time.deltaTime * .5f;
-        moveY = (float) Math.Cos((Math.PI / 180) * input) * Time.deltaTime * .5f;
-        position = new Vector2(moveX, moveY);
-        //move = (float) moveY * Time.deltaTime * 1f;
-        //rotation = (float) moveX * Time.deltaTime * -20f;
-        Debug.Log(moveX + " " + moveY);
-    }
-
-    private void LateUpdate()
-    {
-        //plane.transform.Translate(moveX, moveY, 0f);
-        //plane.transform.position = Vector2.MoveTowards(plane.transform.position, position, 0f);
-        //plane.transform.Rotate(0f, 0f, rotation);
+        moveX = (float) Math.Sin((Math.PI / 180) * input);
+        moveY = (float) Math.Cos((Math.PI / 180) * input);
+        position = new Vector2(moveX * 1000, moveY * 1000);
+        Debug.Log(position);
     }
 }
