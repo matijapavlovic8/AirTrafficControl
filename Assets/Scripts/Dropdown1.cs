@@ -34,10 +34,9 @@ public class Dropdown1 : MonoBehaviour
 
         }
 
-        DropdpownItemSelected(dropdown[0]);
 
         dropdown[0].onValueChanged.AddListener(delegate {
-            DropdpownItemSelected(dropdown[0]);
+            
             selectedOption = DropdpownItemSelectedString(dropdown[0]);
             
 
@@ -82,11 +81,7 @@ public class Dropdown1 : MonoBehaviour
         
     }
 
-    void DropdpownItemSelected(TMP_Dropdown dropdown) {
-        int index = dropdown.value;
-
-        TextBox.text = dropdown.options[index].text;
-    }
+    
 
     string DropdpownItemSelectedString(TMP_Dropdown dropdown) {
         int index = dropdown.value;
