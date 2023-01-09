@@ -14,6 +14,7 @@ public class Dropdown1 : MonoBehaviour
     public string selectedOption;
     // Start is called before the first frame update
      public TMP_Dropdown dr2;
+     public TMP_Dropdown dr3;
      public TMP_Dropdown dropdown;
      public Vector2 position;
      private int input;
@@ -109,8 +110,9 @@ public class Dropdown1 : MonoBehaviour
     }
     public void ReadSecondInput() {
 
-        input = Int32.Parse(a + dr2.options[dr2.value].text);
-        print(input);
+        int input = Int32.Parse(a + dr2.options[dr2.value].text);
+        string positionDirection = input + dr3.options[dr3.value].text;
+        print(positionDirection);
         moveX = (float) Math.Sin((Math.PI / 180) * input);
         moveY = (float) Math.Cos((Math.PI / 180) * input);
         position = new Vector2(moveX * 1000, moveY * 1000);
