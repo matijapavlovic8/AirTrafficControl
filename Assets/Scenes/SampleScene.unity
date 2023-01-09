@@ -344,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -313.2, y: -108.1}
+  m_AnchoredPosition: {x: -206, y: -74}
   m_SizeDelta: {x: 184.68, y: 36.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348213716
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -0.000011444092}
+  m_margin: {x: 0, y: 0, z: 119.29326, w: -0.000011444092}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -542,6 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 939287148}
+  obj: {fileID: 0}
 --- !u!1 &521225550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 939287148}
+  obj: {fileID: 0}
 --- !u!50 &939287154
 Rigidbody2D:
   serializedVersion: 4
@@ -1343,8 +1345,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 505, y: 135}
-  m_SizeDelta: {x: 116.95, y: 46.25}
+  m_AnchoredPosition: {x: 360, y: 93}
+  m_SizeDelta: {x: 106.86, y: 39.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001968520
 MonoBehaviour:
@@ -1478,7 +1480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 425, y: -173}
+  m_AnchoredPosition: {x: 312, y: -119}
   m_SizeDelta: {x: 184.68, y: 29.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1261087684
@@ -1822,7 +1824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -359, y: 123.5}
+  m_AnchoredPosition: {x: -232.3, y: 83.1}
   m_SizeDelta: {x: 184.68, y: 36.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718995179
@@ -2209,6 +2211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 0}
+  obj: {fileID: 0}
 --- !u!1 &1972178364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 63}
+  m_AnchoredPosition: {x: 28.4, y: 46.72}
   m_SizeDelta: {x: 184.68, y: 36.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972178366
