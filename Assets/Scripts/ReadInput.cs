@@ -13,16 +13,28 @@ public class ReadInput : MonoBehaviour
     private float moveY;
     private Vector2 position;
 
+    //GameObject Ant_Smashed = GameObject.Find("Dropdown1");
+
     private int n;
     private GameObject airport;
+    public GameObject obj;
 
     // Start is called before the first frame update
+
+
+    /*void Awake() {
+        obj = GameObject.FindGameObjectWithTag("Dropdown 1");
+
+    }*/
     void Start()
     {
+        //input = obj.GetComponent<Dropdown1> ().num;
         plane = GameObject.Find("Plane");
         n = UnityEngine.Random.Range(1, 3);
         airport = GameObject.Find("Airport " + n);
         body = plane.GetComponent<Rigidbody2D>();
+        ReadStringInput("90");
+        
     }
 
     // Update is called once per frame
@@ -34,7 +46,7 @@ public class ReadInput : MonoBehaviour
         {
             body.velocity = Vector2.zero;
             plane.transform.position = Vector2.MoveTowards(plane.transform.position, position, .001f);
-            //plane.transform.Translate(position * Time.deltaTime, Space.World);
+            plane.transform.Translate(position * Time.deltaTime, Space.World);
         }
     }
 

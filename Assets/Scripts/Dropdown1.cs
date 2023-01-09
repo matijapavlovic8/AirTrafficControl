@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Diagnostics;
+using System;
 public class Dropdown1 : MonoBehaviour
 {
 
@@ -11,13 +11,17 @@ public class Dropdown1 : MonoBehaviour
     public string selectedOption;
     // Start is called before the first frame update
      public TMP_Dropdown dr2;
+     public string position;
+     
     void Start()
     {
 
 
 
         
-        var dropdown = transform.GetComponents<TMP_Dropdown>();
+        //var dropdown = transform.GetComponents<TMP_Dropdown>();
+
+        TMP_Dropdown[] dropdown = gameObject.GetComponents<TMP_Dropdown>();
         
         
 
@@ -34,15 +38,19 @@ public class Dropdown1 : MonoBehaviour
 
         }
 
+        string a = dropdown[0].options[dropdown[0].value].text;
+        //print("1121" + a);
+
 
         dropdown[0].onValueChanged.AddListener(delegate {
             
             selectedOption = DropdpownItemSelectedString(dropdown[0]);
+            a = dropdown[0].options[dropdown[0].value].text;
             
 
             dr2.options.Clear();
             items2.Clear();
-            if(dropdown[0].options[dropdown[0].value].text == "0") {
+            if(a == "0") {
                items2.Add("10");
                 items2.Add("20");
                 items2.Add("30");
@@ -52,7 +60,7 @@ public class Dropdown1 : MonoBehaviour
                 items2.Add("70");
                 items2.Add("80");
                 items2.Add("90");
-            } else if (dropdown[0].options[dropdown[0].value].text == "1" | dropdown[0].options[dropdown[0].value].text == "2"){
+            } else if (a == "1" | a == "2"){
                 items2.Add("00");
                 items2.Add("10");
                 items2.Add("20");
@@ -78,10 +86,24 @@ public class Dropdown1 : MonoBehaviour
         }
         });
 
+
+        dr2.onValueChanged.AddListener(delegate {
+             position = a + dr2.options[dr2.value].text;
+            print(position);
+            //num = Int32.Parse(b);
+
+            
+            
+            
+        });
+
+
         
     }
 
-    
+    public string GetPosition() {
+        return this.position;
+    }
 
     string DropdpownItemSelectedString(TMP_Dropdown dropdown) {
         int index = dropdown.value;
