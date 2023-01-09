@@ -65,9 +65,6 @@ public class Dropdown1 : MonoBehaviour
 
         a = dropdown.options[dropdown.value].text;
         //print("1121" + a);
-
-
-        dropdown.onValueChanged.AddListener(delegate {
             
             selectedOption = DropdpownItemSelectedString(dropdown);
             a = dropdown.options[dropdown.value].text;
@@ -109,7 +106,6 @@ public class Dropdown1 : MonoBehaviour
             dr2.options.Add(new TMP_Dropdown.OptionData() {text = item});
 
         }
-        });
     }
     public void ReadSecondInput() {
 
