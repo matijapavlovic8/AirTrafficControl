@@ -29,15 +29,11 @@ public class ReadInput : MonoBehaviour
     }*/
     void Start()
     {
-<<<<<<< HEAD
-=======
-        //input = obj.GetComponent<Dropdown1> ().num;
-        plane = GameObject.Find("Plane");
->>>>>>> 4ccd35e09fce222edc4e1dbbb422b34c7c711ba1
+
         n = UnityEngine.Random.Range(1, 3);
         airport = GameObject.Find("Airport " + n);
         body = plane.GetComponent<Rigidbody2D>();
-        ReadStringInput("90");
+    
         
     }
 
@@ -50,12 +46,7 @@ public class ReadInput : MonoBehaviour
         else
         {
             body.velocity = Vector2.zero;
-<<<<<<< HEAD
             plane.transform.position = Vector2.MoveTowards(plane.transform.position, position, speed);
-=======
-            plane.transform.position = Vector2.MoveTowards(plane.transform.position, position, .001f);
-            plane.transform.Translate(position * Time.deltaTime, Space.World);
->>>>>>> 4ccd35e09fce222edc4e1dbbb422b34c7c711ba1
         }
     }
 
