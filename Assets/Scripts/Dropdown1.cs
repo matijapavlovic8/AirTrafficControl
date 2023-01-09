@@ -7,21 +7,46 @@ using System;
 public class Dropdown1 : MonoBehaviour
 {
 
+    [SerializeField] GameObject plane;
+    private Rigidbody2D body;
+
     public TMP_Text TextBox;
     public string selectedOption;
     // Start is called before the first frame update
      public TMP_Dropdown dr2;
-     public string position;
+     public TMP_Dropdown dropdown;
+     public Vector2 position;
+     private int input;
+     private float speed = 0.001f;
+     private GameObject airport;
+     private int n;
+     private float moveX;
+     private float moveY;
+     private string a;
      
     void Start()
     {
+        n = UnityEngine.Random.Range(1, 3);
+        airport = GameObject.Find("Airport " + n);
+        body = plane.GetComponent<Rigidbody2D>();
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (input == 0)
+            plane.transform.position = Vector2.MoveTowards(plane.transform.position, airport.transform.position, speed);
+        else
+        {
+            body.velocity = Vector2.zero;
+            plane.transform.position = Vector2.MoveTowards(plane.transform.position, position, speed);
+        }
+    }
 
-
-        
+    public void ReadFirstInput() {
         //var dropdown = transform.GetComponents<TMP_Dropdown>();
-
-        TMP_Dropdown[] dropdown = gameObject.GetComponents<TMP_Dropdown>();
+        
+        //TMP_Dropdown dropdown = gameObject.GetComponent<TMP_Dropdown>();
         
         
 
@@ -31,21 +56,21 @@ public class Dropdown1 : MonoBehaviour
         items.Add("1");
         items.Add("2");
         items.Add("3");
-        dropdown[0].options.Clear();
+        dropdown.options.Clear();
 
         foreach(var item in items) {
-            dropdown[0].options.Add(new TMP_Dropdown.OptionData() {text = item});
+            dropdown.options.Add(new TMP_Dropdown.OptionData() {text = item});
 
         }
 
-        string a = dropdown[0].options[dropdown[0].value].text;
+        a = dropdown.options[dropdown.value].text;
         //print("1121" + a);
 
 
-        dropdown[0].onValueChanged.AddListener(delegate {
+        dropdown.onValueChanged.AddListener(delegate {
             
-            selectedOption = DropdpownItemSelectedString(dropdown[0]);
-            a = dropdown[0].options[dropdown[0].value].text;
+            selectedOption = DropdpownItemSelectedString(dropdown);
+            a = dropdown.options[dropdown.value].text;
             
 
             dr2.options.Clear();
@@ -85,24 +110,16 @@ public class Dropdown1 : MonoBehaviour
 
         }
         });
-
-
-        dr2.onValueChanged.AddListener(delegate {
-             position = a + dr2.options[dr2.value].text;
-            print(position);
-            //num = Int32.Parse(b);
-
-            
-            
-            
-        });
-
-
-        
     }
+    public void ReadSecondInput() {
 
-    public string GetPosition() {
-        return this.position;
+        input = Int32.Parse(a + dr2.options[dr2.value].text);
+        print(input);
+        moveX = (float) Math.Sin((Math.PI / 180) * input);
+        moveY = (float) Math.Cos((Math.PI / 180) * input);
+        position = new Vector2(moveX * 1000, moveY * 1000);
+        print(position);
+        Debug.Log(position);
     }
 
     string DropdpownItemSelectedString(TMP_Dropdown dropdown) {
