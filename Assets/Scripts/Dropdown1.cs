@@ -112,7 +112,7 @@ public class Dropdown1 : MonoBehaviour
 
         int input = Int32.Parse(a + dr2.options[dr2.value].text);
         string positionDirection = input + dr3.options[dr3.value].text;
-        print(positionDirection);
+        print(input + "2222");
         moveX = (float) Math.Sin((Math.PI / 180) * input);
         moveY = (float) Math.Cos((Math.PI / 180) * input);
         position = new Vector2(moveX * 1000, moveY * 1000);
