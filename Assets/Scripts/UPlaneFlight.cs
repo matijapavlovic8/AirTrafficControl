@@ -11,7 +11,8 @@ public class UPlaneFlight : MonoBehaviour
     [SerializeField] GameObject airport5;
     private Rigidbody2D body;
     private List<GameObject> airports = new List<GameObject>();
-    private float speed = 0.001f;
+    private float speed = 0.0005f;
+    //private float turnSpeed = 0.001f;
     private bool f1 = true;
     private bool f2 = false;
     private bool f3 = false;
@@ -34,7 +35,19 @@ public class UPlaneFlight : MonoBehaviour
     void Update()
     {
         if (Vector2.Distance(transform.position, airports[0].transform.position) > .001f && f1)
+        {
             transform.position = Vector2.MoveTowards(transform.position, airports[0].transform.position, speed);
+            Vector3 targ = airports[0].transform.position;
+            transform.up = targ - transform.position;
+
+            /*
+            Vector2 dir = ((Vector2)airports[0].transform.position - (Vector2)transform.position).normalized * 1000;
+            body.MovePosition(body.position + dir * speed * Time.deltaTime);
+            float currentRotation = body.rotation;
+            float targetRotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            body.MoveRotation(Mathf.LerpAngle(currentRotation, targetRotation, turnSpeed * Time.deltaTime));
+            */
+        }
         else if (Vector2.Distance(transform.position, airports[0].transform.position) <= .001f)
         {
             f1 = false;
@@ -42,7 +55,19 @@ public class UPlaneFlight : MonoBehaviour
         }
 
         if (Vector2.Distance(transform.position, airports[1].transform.position) > .001f && f2 && !f1)
+        {
             transform.position = Vector2.MoveTowards(transform.position, airports[1].transform.position, speed);
+            Vector3 targ = airports[1].transform.position;
+            transform.up = targ - transform.position;
+
+            /*
+            Vector2 dir = ((Vector2)airports[1].transform.position - (Vector2)transform.position).normalized * 1000;
+            body.MovePosition(body.position + dir * speed * Time.deltaTime);
+            float currentRotation = body.rotation;
+            float targetRotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            body.MoveRotation(Mathf.LerpAngle(currentRotation, targetRotation, turnSpeed * Time.deltaTime));
+            */
+        }  
         else if (Vector2.Distance(transform.position, airports[1].transform.position) <= .001f)
         {
             f2 = false;
@@ -50,7 +75,19 @@ public class UPlaneFlight : MonoBehaviour
         }
 
         if (Vector2.Distance(transform.position, airports[2].transform.position) > .001f && f3 && !(f1 || f2))
+        {
             transform.position = Vector2.MoveTowards(transform.position, airports[2].transform.position, speed);
+            Vector3 targ = airports[2].transform.position;
+            transform.up = targ - transform.position;
+
+            /*
+            Vector2 dir = ((Vector2)airports[2].transform.position - (Vector2)transform.position).normalized * 1000;
+            body.MovePosition(body.position + dir * speed * Time.deltaTime);
+            float currentRotation = body.rotation;
+            float targetRotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            body.MoveRotation(Mathf.LerpAngle(currentRotation, targetRotation, turnSpeed * Time.deltaTime));
+            */
+        } 
         else if (Vector2.Distance(transform.position, airports[2].transform.position) <= .001f)
         {
             f3 = false;
@@ -58,7 +95,19 @@ public class UPlaneFlight : MonoBehaviour
         }
 
         if (Vector2.Distance(transform.position, airports[3].transform.position) > .001f && f4 && !(f1 || f2 || f3))
+        {
             transform.position = Vector2.MoveTowards(transform.position, airports[3].transform.position, speed);
+            Vector3 targ = airports[3].transform.position;
+            transform.up = targ - transform.position;
+
+            /*
+            Vector2 dir = ((Vector2)airports[3].transform.position - (Vector2)transform.position).normalized * 1000;
+            body.MovePosition(body.position + dir * speed * Time.deltaTime);
+            float currentRotation = body.rotation;
+            float targetRotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            body.MoveRotation(Mathf.LerpAngle(currentRotation, targetRotation, turnSpeed * Time.deltaTime));
+            */
+        }
         else if (Vector2.Distance(transform.position, airports[3].transform.position) <= .001f)
         {
             f4 = false;
@@ -66,6 +115,18 @@ public class UPlaneFlight : MonoBehaviour
         }
 
         if (Vector2.Distance(transform.position, airports[4].transform.position) > .001f && f5 && !(f1 || f2 || f3 || f4))
+        {
             transform.position = Vector2.MoveTowards(transform.position, airports[4].transform.position, speed);
+            Vector3 targ = airports[4].transform.position;
+            transform.up = targ - transform.position;
+
+            /*
+            Vector2 dir = ((Vector2)airports[4].transform.position - (Vector2)transform.position).normalized * 1000;
+            body.MovePosition(body.position + dir * speed * Time.deltaTime);
+            float currentRotation = body.rotation;
+            float targetRotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            body.MoveRotation(Mathf.LerpAngle(currentRotation, targetRotation, turnSpeed * Time.deltaTime));
+            */
+        }
     }
 }
