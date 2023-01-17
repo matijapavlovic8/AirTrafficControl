@@ -7,32 +7,38 @@ using System;
 public class Dropdown1 : MonoBehaviour
 {
 
-     [SerializeField] GameObject plane;
-     private Rigidbody2D body;
+    [SerializeField] GameObject plane;
+    private Rigidbody2D body;
 
-     public TMP_Text TextBox;
-     public string selectedOption;
-     public TMP_Dropdown dr2;
-     public TMP_Dropdown dr3;
-     public TMP_Dropdown dropdown;
-     public Vector2 position;
-     private int input;
-     private float speed = 1f;
-     private float turnSpeed = 500f;
-     private GameObject airport;
-     private int n;
-     private float moveX;
-     private float moveY;
-     private string a;
-     private int direction = 1;
+    public TMP_Text TextBox;
+    public string selectedOption;
+    public TMP_Dropdown dr2;
+    public TMP_Dropdown dr3;
+    public TMP_Dropdown dropdown;
+    public Vector2 position;
+    private int input;
+    private float speed = 1f;
+    private float turnSpeed = 50f;
+    private GameObject airport;
+    private int n;
+    private float moveX;
+    private float moveY;
+    private string a;
 
-    private float force = 0.25f;
+    private int direction = 1;
+    private bool isRotating = false;
+    private float angle;
+
+    //private float force = 0.25f;
 
     void Start()
     {
         n = UnityEngine.Random.Range(1, 5);
         airport = GameObject.Find("Airport " + n);
         body = plane.GetComponent<Rigidbody2D>();
+
+        Vector3 targ = airport.transform.position;
+        plane.transform.up = targ - plane.transform.position;
     }
 
     void Update()
@@ -40,37 +46,47 @@ public class Dropdown1 : MonoBehaviour
         
         if (input == 0)
         {
-
-            //plane.transform.position = Vector2.MoveTowards(plane.transform.position, airport.transform.position, speed);
-            //Vector3 targ = airport.transform.position;
-            //plane.transform.up = targ - plane.transform.position;
-
-            Vector2 dir = ((Vector2)airport.transform.position - (Vector2)plane.transform.position).normalized * 1000;
-
             body.MovePosition(Vector2.MoveTowards(plane.transform.position, airport.transform.position, speed * Time.deltaTime));
-
-            float currentAngle = body.rotation;
-            float targerAngle = -1 * Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targerAngle, turnSpeed * Time.deltaTime);
-
-            body.MoveRotation(newAngle);
-
-            //Vector2 forceVector = Quaternion.Euler(0, 0, -body.rotation) * -dir / 100 * force;
-            //body.AddForce(forceVector);
+            angle = -body.rotation;
+            if (angle < 0)
+                angle += 360;
         }
         else
         {
+            
+            if(isRotating)
+            {
+                angle += turnSpeed * Time.deltaTime;
+                if (angle >= 360)
+                    angle -= 360;
 
-            body.MovePosition(Vector2.MoveTowards(plane.transform.position, position, speed * Time.deltaTime));
+                float x = (float)Math.Sin((Math.PI / 180) * angle);
+                float y = (float)Math.Cos((Math.PI / 180) * angle);
+                Vector2 forceVector = new Vector2(x * 1000, y * 1000);
+                plane.transform.up = forceVector - (Vector2)plane.transform.position;
 
-            float currentAngle = body.rotation;
-            float targerAngle = -1 * Mathf.Atan2(position.x, position.y) * Mathf.Rad2Deg;
-            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targerAngle, turnSpeed * Time.deltaTime);
+                body.MovePosition(Vector2.MoveTowards(plane.transform.position, forceVector, speed * Time.deltaTime));
 
-            body.MoveRotation(newAngle);
+                if (Mathf.Abs(angle - input) < 10f)
+                {
+                    angle = input;
+                    isRotating = false;
+                }
+                
+            }
+            else
+            {
+                body.MovePosition(Vector2.MoveTowards(plane.transform.position, position, speed * Time.deltaTime));
+            }
+            
 
-            //Vector2 forceVector = Quaternion.Euler(0, 0, -body.rotation) * -position / 100 * force;
-            //body.AddForce(forceVector);
+            //body.MovePosition(Vector2.MoveTowards(plane.transform.position, position, speed * Time.deltaTime));
+
+            //float currentAngle = body.rotation;
+            //float targerAngle = -1 * Mathf.Atan2(position.x, position.y) * Mathf.Rad2Deg;
+            //float newAngle = Mathf.MoveTowardsAngle(currentAngle, targerAngle, turnSpeed * Time.deltaTime);
+
+            //body.MoveRotation(newAngle);
         }
         
     }
@@ -95,12 +111,10 @@ public class Dropdown1 : MonoBehaviour
         }
 
         a = dropdown.options[dropdown.value].text;
-        //print("1121" + a);
             
             selectedOption = DropdpownItemSelectedString(dropdown);
             a = dropdown.options[dropdown.value].text;
             
-
             dr2.options.Clear();
             items2.Clear();
             if (a == "0" || a == "1" || a == "2"){
@@ -142,6 +156,7 @@ public class Dropdown1 : MonoBehaviour
         moveX = (float) Math.Sin((Math.PI / 180) * input);
         moveY = (float) Math.Cos((Math.PI / 180) * input);
         position = new Vector2(moveX * 1000, moveY * 1000);
+        isRotating = true;
     }
 
     string DropdpownItemSelectedString(TMP_Dropdown dropdown) {
