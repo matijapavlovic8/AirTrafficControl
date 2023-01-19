@@ -1055,6 +1055,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1128,6 +1129,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c8ac0ab83ee80429a53a9f2334f6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextBox: {fileID: 0}
+  selectedOption: 
+  dr1: {fileID: 1603470035}
+  dr2: {fileID: 2075334303}
+  dr3: {fileID: 880717997}
+  plane: {fileID: 0}
 --- !u!1 &521225550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,11 +1475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1e85aa0965e63449f03eace218604e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airport1: {fileID: 827754199}
-  airport2: {fileID: 1443216870}
-  airport3: {fileID: 845228046}
-  airport4: {fileID: 521225550}
-  airport5: {fileID: 1723374898}
 --- !u!58 &646733991
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11845,7 +11859,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 939287161}
+      - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: Dropdown1, Assembly-CSharp
         m_MethodName: ReadSecondInput
         m_Mode: 1
@@ -12053,8 +12067,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939287148}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.07, y: 5.62, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.74, y: 5.7, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12125,9 +12139,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 16909788}
-  dr1: {fileID: 1603470033}
-  dr2: {fileID: 2075334301}
-  dr3: {fileID: 880717995}
+  dr1: {fileID: 1603470035}
+  dr2: {fileID: 2075334303}
+  dr3: {fileID: 880717997}
+  dropdown1: {fileID: 519420033}
 --- !u!114 &939287161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12137,15 +12152,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 939287148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c8ac0ab83ee80429a53a9f2334f6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: ce88907d62ee1db4794c4e3cdb26841d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
-  selectedOption: 
-  dr1: {fileID: 1603470035}
-  dr2: {fileID: 2075334303}
-  dr3: {fileID: 880717997}
   position: {x: 0, y: 0}
+  input: 0
+  direction: 0
+  isRotating: 0
 --- !u!1 &1001968518
 GameObject:
   m_ObjectHideFlags: 0
@@ -17842,11 +17855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1e85aa0965e63449f03eace218604e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airport1: {fileID: 827754199}
-  airport2: {fileID: 1443216870}
-  airport3: {fileID: 845228046}
-  airport4: {fileID: 521225550}
-  airport5: {fileID: 1723374898}
 --- !u!58 &1282897477
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23272,7 +23280,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 939287161}
+      - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: Dropdown1, Assembly-CSharp
         m_MethodName: ReadFirstInput
         m_Mode: 1
@@ -25080,6 +25088,7 @@ MonoBehaviour:
   dr1: {fileID: 1603470035}
   dr2: {fileID: 2075334303}
   dr3: {fileID: 880717997}
+  dropdown1: {fileID: 519420033}
 --- !u!114 &2012100765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25189,7 +25198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012100763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.269, y: 4.495, z: 0}
+  m_LocalPosition: {x: 8.958, y: 4.18, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25207,15 +25216,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2012100763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c8ac0ab83ee80429a53a9f2334f6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: ce88907d62ee1db4794c4e3cdb26841d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
-  selectedOption: 
-  dr1: {fileID: 1603470035}
-  dr2: {fileID: 2075334303}
-  dr3: {fileID: 880717997}
   position: {x: 0, y: 0}
+  input: 0
+  direction: 0
+  isRotating: 0
 --- !u!1 &2075334301
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,90 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System;
-using Unity.VisualScripting;
 
 public class Dropdown1 : MonoBehaviour
 {
-    private Rigidbody2D body;
-
     public TMP_Text TextBox;
     public string selectedOption;
     public TMP_Dropdown dr1;
     public TMP_Dropdown dr2;
     public TMP_Dropdown dr3;
 
-    public Vector2 position;
+    private Vector2 position;
     private int input;
-    private float speed = 1f;
-    private float turnSpeed = 50f;
-    private GameObject airport;
 
-    private int n;
     private float moveX;
     private float moveY;
     private string a;
 
     private int direction = 1;
     private bool isRotating = false;
-    private float angle;
 
-    void Start()
-    {
-        n = UnityEngine.Random.Range(1, 5);
-        airport = GameObject.Find("Airport " + n);
-        body = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        if (input == 0)
-        {
-            body.MovePosition(Vector2.MoveTowards(transform.position, airport.transform.position, speed * Time.deltaTime));
-            angle = -body.rotation;
-            if (angle < 0)
-                angle += 360;
-        }
-        else
-        {
-            if(isRotating)
-            {
-                if(direction == 1)
-                {
-                    angle += turnSpeed * Time.deltaTime;
-                    if (angle >= 360)
-                        angle -= 360;
-                }
-                else
-                {
-                    angle -= turnSpeed * Time.deltaTime;
-                    if (angle <= 0)
-                        angle += 360;
-                }
-
-                float x = (float)Math.Sin((Math.PI / 180) * angle);
-                float y = (float)Math.Cos((Math.PI / 180) * angle);
-                Vector2 forceVector = new Vector2(x * 1000, y * 1000);
-                transform.up = forceVector - (Vector2)transform.position;
-
-                body.MovePosition(Vector2.MoveTowards(transform.position, forceVector, speed * Time.deltaTime));
-
-                if (Mathf.Abs(angle - input) < 10f)
-                {
-                    angle = input;
-                    isRotating = false;
-                }
-                
-            }
-            else
-            {
-                transform.up = position - (Vector2)transform.position;
-                body.MovePosition(Vector2.MoveTowards(transform.position, position, speed * Time.deltaTime));
-            }
-        }
-    }
+    public PlaneFlight plane;
 
     public void ReadFirstInput() {
         List<string> items = new List<string>();
@@ -156,10 +93,16 @@ public class Dropdown1 : MonoBehaviour
         moveY = (float) Math.Cos((Math.PI / 180) * input);
         position = new Vector2(moveX * 1000, moveY * 1000);
         isRotating = true;
+
+        plane.position = position;
+        plane.input = input;
+        plane.direction = direction;
+        plane.isRotating = isRotating;
     }
 
     string DropdpownItemSelectedString(TMP_Dropdown dropdown) {
         int index = dropdown.value;
         return dropdown.options[index].text;
     }
+
 }
