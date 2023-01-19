@@ -29,7 +29,10 @@ public class Dropdown1 : MonoBehaviour
     private bool isRotating = false;
     private float angle;
 
-    //private float force = 0.25f;
+    public void setPlane(GameObject p)
+    {
+        plane = p;
+    }
 
     void Start()
     {
@@ -56,9 +59,18 @@ public class Dropdown1 : MonoBehaviour
             
             if(isRotating)
             {
-                angle += turnSpeed * Time.deltaTime;
-                if (angle >= 360)
-                    angle -= 360;
+                if(direction == 1)
+                {
+                    angle += turnSpeed * Time.deltaTime;
+                    if (angle >= 360)
+                        angle -= 360;
+                }
+                else
+                {
+                    angle -= turnSpeed * Time.deltaTime;
+                    if (angle <= 0)
+                        angle += 360;
+                }
 
                 float x = (float)Math.Sin((Math.PI / 180) * angle);
                 float y = (float)Math.Cos((Math.PI / 180) * angle);
@@ -76,17 +88,9 @@ public class Dropdown1 : MonoBehaviour
             }
             else
             {
+                plane.transform.up = position - (Vector2)plane.transform.position;
                 body.MovePosition(Vector2.MoveTowards(plane.transform.position, position, speed * Time.deltaTime));
             }
-            
-
-            //body.MovePosition(Vector2.MoveTowards(plane.transform.position, position, speed * Time.deltaTime));
-
-            //float currentAngle = body.rotation;
-            //float targerAngle = -1 * Mathf.Atan2(position.x, position.y) * Mathf.Rad2Deg;
-            //float newAngle = Mathf.MoveTowardsAngle(currentAngle, targerAngle, turnSpeed * Time.deltaTime);
-
-            //body.MoveRotation(newAngle);
         }
         
     }
@@ -117,7 +121,19 @@ public class Dropdown1 : MonoBehaviour
             
             dr2.options.Clear();
             items2.Clear();
-            if (a == "0" || a == "1" || a == "2"){
+            if (a == "0")
+            {
+                items2.Add("10");
+                items2.Add("20");
+                items2.Add("30");
+                items2.Add("40");
+                items2.Add("50");
+                items2.Add("60");
+                items2.Add("70");
+                items2.Add("80");
+                items2.Add("90");
+        }
+            else if (a == "1" || a == "2"){
                 items2.Add("00");
                 items2.Add("10");
                 items2.Add("20");
