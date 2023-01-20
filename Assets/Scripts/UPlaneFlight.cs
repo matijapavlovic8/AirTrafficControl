@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,8 +9,6 @@ public class UPlaneFlight : MonoBehaviour
     private float x, y;
     private Vector2 position;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();

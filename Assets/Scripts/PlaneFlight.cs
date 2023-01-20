@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlaneFlight : MonoBehaviour
@@ -40,7 +41,6 @@ public class PlaneFlight : MonoBehaviour
         }
         else
         {
-            Debug.Log(isRotating + " " + position);
             if (isRotating)
             {
                 if (direction == 1)
