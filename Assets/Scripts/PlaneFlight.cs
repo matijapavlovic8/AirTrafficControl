@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlaneFlight : MonoBehaviour
@@ -23,11 +22,15 @@ public class PlaneFlight : MonoBehaviour
     void Start()
     {
         n = UnityEngine.Random.Range(1, 5);
-        airport = GameObject.Find("Airport " + n);
+        if(GameObject.Find("Airport " + 2) == null)
+        {
+            airport = GameObject.Find("Airport " + 1);
+        }
+        else
+        {
+            airport = GameObject.Find("Airport " + n);
+        }
         body = GetComponent<Rigidbody2D>();
-
-        Vector3 targ = airport.transform.position;
-        transform.up = targ - transform.position;
     }
 
     void Update()
@@ -35,6 +38,8 @@ public class PlaneFlight : MonoBehaviour
         if (input == 0)
         {
             body.MovePosition(Vector2.MoveTowards(transform.position, airport.transform.position, speed * Time.deltaTime));
+            Vector3 targ = airport.transform.position;
+            transform.up = targ - transform.position;
             angle = -body.rotation;
             if (angle < 0)
                 angle += 360;
