@@ -1,9 +1,15 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System;
+using System.IO;
+using System.Globalization;
 
 public class PlaneFlight : MonoBehaviour
 {
+   
     private Rigidbody2D body;
 
     private float speed = 1f;
@@ -11,6 +17,8 @@ public class PlaneFlight : MonoBehaviour
     private GameObject airport;
 
     private int n;
+    public string str_directory = Environment.CurrentDirectory.ToString();
+
 
     private float angle;
 
@@ -32,6 +40,21 @@ public class PlaneFlight : MonoBehaviour
 
     void Update()
     {
+
+         using (StreamWriter writer = new StreamWriter("Wfile.txt"));
+        {
+
+            
+            string sudarString = body.transform.position.ToString();
+            string parent = System.IO.Directory.GetParent(str_directory).FullName;
+            Debug.Log(parent);
+            string file = @parent + "/AirTrafficControl/log.txt";
+            Debug.Log(file);
+            DateTime timeStamp = DateTime.Now;
+            string[] tekst = {sudarString + timeStamp};
+            File.AppendAllLines(file, tekst);
+
+        }
         if (input == 0)
         {
             body.MovePosition(Vector2.MoveTowards(transform.position, airport.transform.position, speed * Time.deltaTime));

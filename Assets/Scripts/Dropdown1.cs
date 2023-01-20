@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using System.IO;
+using System.Globalization;
 
 public class Dropdown1 : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class Dropdown1 : MonoBehaviour
     private bool isRotating = false;
 
     public PlaneFlight plane;
+    public string str_directory = Environment.CurrentDirectory.ToString();
+
 
     public void ReadFirstInput() {
         List<string> items = new List<string>();
@@ -81,6 +85,26 @@ public class Dropdown1 : MonoBehaviour
     }
     public void ReadSecondInput() {
         input = Int32.Parse(a + dr2.options[dr2.value].text);
+
+        using (StreamWriter writer = new StreamWriter("Wfile.txt"));
+        {
+            string sudarString = plane.transform.position.ToString();
+            string parent = System.IO.Directory.GetParent(str_directory).FullName;
+            Debug.Log(parent);
+            string file = @parent + "/AirTrafficControl/log.txt";
+            DateTime timeStamp = DateTime.Now;
+            string smjer;
+
+            if (dr3.options[dr3.value].text.Equals("R")){
+                smjer = "Skrećete udesno!";
+            } else {
+                smjer = "Skrećete ulijevo";
+            }
+            string[] tekst = {smjer};
+            Debug.Log(smjer);
+            File.AppendAllLines(file, tekst);
+
+        }
         if (dr3.options[dr3.value].text.Equals("R"))
         {
             direction = 1;
